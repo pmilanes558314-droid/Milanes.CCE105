@@ -1,0 +1,27 @@
+package milanes;
+
+abstract class GameCharacter {
+    String name;
+    int hp;
+
+    public GameCharacter(String name) {
+        this.name = name;
+        this.hp = 100;
+    }
+
+    public abstract int attack();
+    public abstract int specialMove();
+
+    public void takeDamage(int damage) {
+        hp -= damage;
+        if (hp < 0) hp = 0;
+    }
+
+    public boolean isAlive() {
+        return hp > 0;
+    }
+
+    public String getStatus() {
+        return name + ": " + hp + " HP";
+    }
+}
