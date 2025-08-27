@@ -1,0 +1,17 @@
+package milanes;
+
+class Warrior extends GameCharacter {
+    public Warrior(String name) {
+        super(name);
+    }
+
+    @Override
+    public int attack() {
+        return 15;
+    }
+
+    @Override
+    public int specialMove() {
+        return 25;
+    }
+}
