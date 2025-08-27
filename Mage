@@ -1,0 +1,17 @@
+package milanes;
+
+class Mage extends GameCharacter {
+    public Mage(String name) {
+        super(name);
+    }
+
+    @Override
+    public int attack() {
+        return 20;
+    }
+
+    @Override
+    public int specialMove() {
+        return 30;
+    }
+}
