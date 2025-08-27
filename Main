@@ -1,0 +1,39 @@
+package milanes;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+    public static void main(String[] args) {
+       
+        String mageName = JOptionPane.showInputDialog("Enter Mage's name:");
+        String warriorName = JOptionPane.showInputDialog("Enter Warrior's name:");
+
+        GameCharacter mage = new Mage(mageName);
+        GameCharacter warrior = new Warrior(warriorName);
+
+        JOptionPane.showMessageDialog(null, "Battle Start!\n" + mage.getStatus() + "\n" + warrior.getStatus());
+
+        boolean mageTurn = true;
+        while (mage.isAlive() && warrior.isAlive()) {
+            GameCharacter current = mageTurn ? mage : warrior;
+            GameCharacter opponent = mageTurn ? warrior : mage;
+
+            String choice = JOptionPane.showInputDialog(
+                current.name + "'s turn!\n1. Attack\n2. Special Move"
+            );
+
+            int damage = choice.equals("2") ? current.specialMove() : current.attack();
+            opponent.takeDamage(damage);
+
+            JOptionPane.showMessageDialog(null,
+                current.name + " deals " + damage + " damage!\n\n" +
+                mage.getStatus() + "\n" + warrior.getStatus()
+            );
+
+            mageTurn = !mageTurn;
+        }
+
+        String winner = mage.isAlive() ? mage.name : warrior.name;
+        JOptionPane.showMessageDialog(null, "🎉 " + winner + " wins!");
+    }
+}
